@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+import component from './plugins/components'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
@@ -16,5 +17,6 @@ new Vue({
   router,
   store,
   vuetify,
+  component,
   template: '<App/>'
 }).$mount('#app')
