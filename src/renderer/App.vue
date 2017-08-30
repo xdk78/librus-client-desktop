@@ -10,6 +10,7 @@
   }
 </script>
 
-<style>
-  /* CSS */
+<style lang="stylus">
+  @import './stylus/main.styl'
 </style>
+
