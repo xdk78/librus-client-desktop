@@ -24,9 +24,9 @@
                                         name="password"
                                         label="Hasło"
                                         id="password"
-                                        :append-icon="!hide_passoword ? 'visibility' : 'visibility_off'"
-                                        :append-icon-cb="() => (hide_passoword = !hide_passoword)"
-                                        :type="hide_passoword ? 'password' : 'text'"
+                                        :append-icon="!hide_password ? 'visibility' : 'visibility_off'"
+                                        :append-icon-cb="() => (hide_password = !hide_password)"
+                                        :type="hide_password ? 'password' : 'text'"
                                 ></v-text-field>
                             </v-flex>
                         </v-layout>
@@ -44,7 +44,7 @@
     name: 'login',
     data () {
       return {
-        hide_passoword: true
+        hide_password: true
       }
     }
   }
