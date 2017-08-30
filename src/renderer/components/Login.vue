@@ -6,7 +6,7 @@
                 <v-card-text>
                     <v-container fluid>
                         <v-layout row>
-                            <v-flex xs8>
+                            <v-flex>
                                 <v-text-field
                                         name="login"
                                         label="Login"
@@ -19,7 +19,7 @@
                 <v-card-text>
                     <v-container fluid>
                         <v-layout row>
-                            <v-flex xs8>
+                            <v-flex>
                                 <v-text-field
                                         name="password"
                                         label="Hasło"
