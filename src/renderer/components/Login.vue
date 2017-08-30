@@ -2,7 +2,7 @@
     <v-layout justify-center align-center row wrap>
         <v-flex xs12 sm8 md6>
             <v-subheader>Zaloguj się</v-subheader>
-            <v-card class="grey lighten-4 elevation-0">
+            <v-card class="grey lighten-4 elevation-1">
                 <v-card-text>
                     <v-container fluid>
                         <v-layout row>
@@ -32,7 +32,9 @@
                         </v-layout>
                     </v-container>
                 </v-card-text>
-                <v-btn primary>Zaloguj się</v-btn>
+                <v-container fluid>
+                    <v-btn primary>Zaloguj się</v-btn>
+                </v-container>
             </v-card>
         </v-flex>
     </v-layout>
