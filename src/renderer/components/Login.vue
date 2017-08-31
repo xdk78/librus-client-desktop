@@ -11,6 +11,8 @@
                                         name="login"
                                         label="Login"
                                         id="login"
+                                        v-on:keyup.enter="loginIn"
+                                        v-model="login"
                                 ></v-text-field>
                             </v-flex>
                         </v-layout>
@@ -24,6 +26,8 @@
                                         name="password"
                                         label="Hasło"
                                         id="password"
+                                        v-on:keyup.enter="loginIn"
+                                        v-model="password"
                                         :append-icon="!hide_password ? 'visibility' : 'visibility_off'"
                                         :append-icon-cb="() => (hide_password = !hide_password)"
                                         :type="hide_password ? 'password' : 'text'"
@@ -33,7 +37,7 @@
                     </v-container>
                 </v-card-text>
                 <v-container fluid>
-                    <v-btn primary>Zaloguj się</v-btn>
+                    <v-btn v-on:click="loginIn" primary>Zaloguj się</v-btn>
                 </v-container>
             </v-card>
         </v-flex>
@@ -46,9 +50,19 @@
     name: 'login',
     data () {
       return {
-        hide_password: true
+        hide_password: true,
+        login: '',
+        password: ''
       }
-    }
+    },
+        methods: {
+        loginIn () {
+          this.$store.dispatch('loginIn', {
+            login: this.login,
+            password: this.password}
+          )
+        }
+      }
   }
 </script>
 
