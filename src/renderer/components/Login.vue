@@ -1,10 +1,10 @@
 <template>
     <v-layout justify-center align-center row wrap>
         <v-flex xs12 sm8 md6>
-            <v-subheader>Zaloguj się</v-subheader>
+            <h3 class="text-xs-center">Zaloguj się</h3>
             <v-card class="grey lighten-4 elevation-1">
                 <v-card-text>
-                    <v-container fluid>
+                    <v-container>
                         <v-layout row>
                             <v-flex>
                                 <v-text-field
@@ -16,10 +16,6 @@
                                 ></v-text-field>
                             </v-flex>
                         </v-layout>
-                    </v-container>
-                </v-card-text>
-                <v-card-text>
-                    <v-container fluid>
                         <v-layout row>
                             <v-flex>
                                 <v-text-field
@@ -36,9 +32,9 @@
                         </v-layout>
                     </v-container>
                 </v-card-text>
-                <v-container fluid>
-                    <v-btn v-on:click="loginIn" primary>Zaloguj się</v-btn>
-                </v-container>
+                <v-card-actions>
+                    <v-btn v-on:click="loginIn" flat primary>Zaloguj się</v-btn>
+                </v-card-actions>
             </v-card>
         </v-flex>
     </v-layout>
