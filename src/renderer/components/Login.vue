@@ -33,13 +33,7 @@
                     </v-container>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn
-                        :loading="loading"
-                        v-on:click="loginIn"
-                        :disabled="loading"
-                        flat primary>
-                        Zaloguj się
-                    </v-btn>
+                    <v-btn v-on:click="loginIn" flat primary>Zaloguj się</v-btn>
                 </v-card-actions>
             </v-card>
         </v-flex>
@@ -48,29 +42,46 @@
 
 <script>
   /* eslint-disable indent */
+  import axios from 'axios'
+  let querystring = require('querystring')
   export default {
     name: 'login',
     data () {
       return {
         hide_password: true,
         login: '',
-        password: '',
-        loader: null,
-        loading: false
+        password: ''
       }
     },
     methods: {
-      loginIn () {
-        this.loader = 'loading'
-        const l = this.loader
-        this[l] = !this[l]
-        setTimeout(() => this.$store.dispatch('loginIn', {
-          login: this.login,
-          password: this.password
-        }).then(() => {
-          this[l] = false
-          this.loader = null
-        }), 10)
+        loginIn (login, passowrd) {
+          axios.defaults.adapter = require('axios/lib/adapters/http')
+          const api = axios.create({
+            baseURL: 'https://api.librus.pl',
+            headers: {
+              'Authorization': 'Basic MzU6NjM2YWI0MThjY2JlODgyYjE5YTMzZjU3N2U5NGNiNGY=',
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            withCredentials: true
+          })
+          api.post('/OAuth/Token', querystring.stringify({
+            username: this.login,
+            password: this.password,
+            grant_type: 'password',
+            librus_long_term_token: '1',
+            librus_rules_accepted: 'true',
+            librus_mobile_rules_accepted: 'true'
+          })).then((response) => {
+            console.log(response)
+            console.log(response.data)
+            let data = response.data
+            this.$store.dispatch('saveTokens', data.access_token, data.refresh_token)
+          }).catch(error => {
+            if (error.response) {
+              // Response has been received from the server
+              console.log(error.response.data) // => the response payload
+            }
+          })
       }
     }
   }
