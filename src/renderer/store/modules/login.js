@@ -8,8 +8,10 @@ const mutations = {
   setlogged (state, logged) {
     state.logged = logged
   },
-  saveTokens (state, accessToken, refreshToken) {
+  saveAccessToken (state, accessToken) {
     state.accessToken = accessToken
+  },
+  saveRefreshToken (state, refreshToken) {
     state.refreshToken = refreshToken
   }
 }
@@ -21,8 +23,11 @@ const getters = {
 }
 
 const actions = {
-  saveTokens ({ commit }, accessToken, refreshToken) {
-    commit('saveTokens', accessToken, refreshToken)
+  saveAccessToken ({ commit }, accessToken) {
+    commit('saveAccessToken', accessToken)
+  },
+  saveRefreshToken ({ commit }, refreshToken) {
+    commit('saveRefreshToken', refreshToken)
   }
 }
 
