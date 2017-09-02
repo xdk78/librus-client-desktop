@@ -33,7 +33,13 @@
                     </v-container>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn v-on:click="loginIn" flat primary>Zaloguj się</v-btn>
+                    <v-btn
+                        :loading="loading"
+                        v-on:click="loginIn"
+                        :disabled="loading"
+                        flat primary>
+                        Zaloguj się
+                    </v-btn>
                 </v-card-actions>
             </v-card>
         </v-flex>
@@ -48,17 +54,25 @@
       return {
         hide_password: true,
         login: '',
-        password: ''
+        password: '',
+        loader: null,
+        loading: false
       }
     },
-        methods: {
-        loginIn () {
-          this.$store.dispatch('loginIn', {
-            login: this.login,
-            password: this.password}
-          )
-        }
+    methods: {
+      loginIn () {
+        this.loader = 'loading'
+        const l = this.loader
+        this[l] = !this[l]
+        setTimeout(() => this.$store.dispatch('loginIn', {
+          login: this.login,
+          password: this.password
+        }).then(() => {
+          this[l] = false
+          this.loader = null
+        }), 10)
       }
+    }
   }
 </script>
 
