@@ -14,7 +14,7 @@
                                         id="login"
                                         v-on:keyup.enter="loginIn"
                                         v-model="login"
-                                        :rules="passwordRules"
+                                        :rules="loginRules"
                                         required
                                 ></v-text-field>
                             </v-flex>
