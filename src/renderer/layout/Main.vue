@@ -48,7 +48,8 @@
         fixed: true,
         miniVariant: false,
         items: [
-          {icon: 'home', title: 'Strona Głowna', to: '/'}
+          {icon: 'list', title: 'Plan lekcji', to: '/'},
+          {icon: 'grade', title: 'Oceny', to: '/grades'}
         ],
         title: 'Dziennik'
       }

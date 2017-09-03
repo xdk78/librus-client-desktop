@@ -1,27 +1,27 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '../layout/Main.vue'
-import home from '../components/Home.vue'
-import login from '../components/Login.vue'
+import Timetable from '../components/Timetable.vue'
+import Grades from '../components/Grades.vue'
+import Login from '../components/Login.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/mainlayout',
-      name: 'mainlayout',
-      component: Main
-    },
-    {
       path: '/',
-      name: 'home',
-      component: home
+      name: 'mainlayout',
+      component: Main,
+      children: [
+        { path: '/', name: 'timetable', component: Timetable },
+        { path: '/grades', name: 'grades', component: Grades }
+      ]
     },
     {
       path: '/login',
       name: 'login',
-      component: login
+      component: Login
     },
     {
       path: '*',
