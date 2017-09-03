@@ -30,12 +30,30 @@ const loginIn = (login, password) => {
     store.commit('setlogged', true)
   }).catch(error => {
     if (error.response) {
-      // Response has been received from the server
-      console.log(error.response.data) // => the response payload
+      console.log(error.response.data)
     }
   })
 }
 
+const request = (endpoint) => {
+  return new Promise((resolve, reject) => {
+    api.get(endpoint, {
+      'Authorization': 'Bearer ' + store.getters.accessToken
+    })
+      .then((response) => {
+        resolve(response.data)
+      })
+      .catch(error => {
+        reject(error)
+        if (error.response) {
+          reject(error.response)
+          console.log(error.response.data)
+        }
+      })
+  })
+}
+
 export default {
-  loginIn
+  loginIn,
+  request
 }
