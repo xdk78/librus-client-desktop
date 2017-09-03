@@ -40,7 +40,7 @@
 
 <script>
   export default {
-    name: 'main-layout',
+    name: 'mainlayout',
     data () {
       return {
         clipped: true,

@@ -7,7 +7,7 @@
                         <login></login>
                     </div>
                     <div v-if="logged">
-                        <main-layout></main-layout>
+                        <mainlayout></mainlayout>
                     </div>
                 </v-slide-y-transition>
             </v-container>
@@ -21,7 +21,7 @@
 
 <script>
   export default {
-    name: 'librus-client-desktop',
+    name: 'app',
     data () {
       return {
         logged: this.$store.getters.logged

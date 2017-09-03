@@ -38,7 +38,7 @@
                     </v-container>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn v-on:click="loginIn" flat primary >Zaloguj się</v-btn>
+                    <v-btn @click.native="loginIn" flat primary to="/mainlayout">Zaloguj się</v-btn>
                 </v-card-actions>
                 </v-form>
             </v-card>
@@ -48,8 +48,7 @@
 
 <script>
   /* eslint-disable indent */
-  import axios from 'axios'
-  let querystring = require('querystring')
+  import api from '../api'
   export default {
     name: 'login',
     data () {
@@ -71,36 +70,7 @@
     methods: {
         loginIn (login, password) {
           if (this.valid === true) {
-            axios.defaults.adapter = require('axios/lib/adapters/http')
-            const api = axios.create({
-              // https://api.librus.pl
-              baseURL: 'https://api.librus.pl',
-              headers: {
-                'Authorization': 'Basic MzU6NjM2YWI0MThjY2JlODgyYjE5YTMzZjU3N2U5NGNiNGY=',
-                'Content-Type': 'application/x-www-form-urlencoded'
-              },
-              withCredentials: true
-            })
-            api.post('/OAuth/Token', querystring.stringify({
-              username: this.login,
-              password: this.password,
-              grant_type: 'password',
-              librus_long_term_token: '1',
-              librus_rules_accepted: 'true',
-              librus_mobile_rules_accepted: 'true'
-            })).then((response) => {
-              console.log(response)
-              console.log(response.data)
-              let data = response.data
-              this.$store.dispatch('saveAccessToken', data.access_token)
-              this.$store.dispatch('saveRefreshToken', data.refresh_token)
-              this.$store.commit('setlogged', true)
-            }).catch(error => {
-              if (error.response) {
-                // Response has been received from the server
-                console.log(error.response.data) // => the response payload
-              }
-            })
+            api.loginIn(this.login, this.password)
           }
         }
     }
