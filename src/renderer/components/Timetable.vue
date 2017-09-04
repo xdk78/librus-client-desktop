@@ -15,7 +15,7 @@
     name: 'timetable',
     data () {
       return {
-        timetables: this.$store.getters.refreshToken
+        timetables: null
       }
     },
     mounted () {
