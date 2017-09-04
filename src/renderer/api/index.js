@@ -5,7 +5,6 @@ let querystring = require('querystring')
 axios.defaults.adapter = require('axios/lib/adapters/http')
 const api = axios.create({
   // https://api.librus.pl
-  baseURL: 'https://api.librus.pl',
   headers: {
     'Authorization': 'Basic MzU6NjM2YWI0MThjY2JlODgyYjE5YTMzZjU3N2U5NGNiNGY=',
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -14,7 +13,7 @@ const api = axios.create({
 })
 
 const loginIn = (login, password) => {
-  api.post('/OAuth/Token', querystring.stringify({
+  api.post('https://api.librus.pl/OAuth/Token', querystring.stringify({
     username: login,
     password: password,
     grant_type: 'password',
@@ -37,9 +36,10 @@ const loginIn = (login, password) => {
 
 const request = (endpoint) => {
   return new Promise((resolve, reject) => {
-    api.get(endpoint, {
-      'Authorization': 'Bearer ' + store.getters.accessToken
-    })
+    api.get('https://api.librus.pl/2.0' + endpoint, {
+      headers: {
+        'Authorization': 'Bearer ' + store.getters.accessToken
+      }})
       .then((response) => {
         resolve(response.data)
       })
