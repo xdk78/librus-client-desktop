@@ -15,7 +15,7 @@
     name: 'timetable',
     data () {
       return {
-        timetables: null
+        timetables: []
       }
     },
     mounted () {
