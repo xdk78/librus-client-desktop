@@ -20,7 +20,7 @@
   },
   "build": {
     "productName": "librus-client-desktop",
-    "appId": "org.simulatedgreg.electron-vue",
+    "appId": "pl.librus-client-desktop",
     "directories": {
       "output": "build"
     },
@@ -43,7 +43,8 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "icon": "build/icons/icon.icns",
+      "type": "distribution"
     },
     "win": {
       "icon": "build/icons/icon.ico"
