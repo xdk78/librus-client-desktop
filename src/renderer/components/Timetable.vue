@@ -1,17 +1,33 @@
 <template>
-    <v-container fluid style="min-height: 0;" grid-list-lg>
+    <v-container fluid grid-list-xs>
         <v-layout justify-center align-center row wrap v-for="(days, key, index) in timetables">
             <v-flex xs12 sm8>
                 <h6 class="primary--text text-sm-center">{{date[index]}}</h6>
             </v-flex>
             <v-flex xs12 sm8 v-for="oneday in days">
-                <v-card>
-                    <v-card-title primary-title v-for="da in oneday">
+                <v-card v-for="da in oneday">
+                    <v-card-title primary-title >
+                    <v-list-tile-avatar>
+                        <h3 class="headline mb-0"> {{da.LessonNo}}</h3>
+                    </v-list-tile-avatar>
                         <div>
-                            <h3 class="headline mb-0"> {{da.LessonNo}}</h3>
                             <div>{{da.Subject.Name}}</div>
+                            <div class="secondary--text">{{da.Teacher.FirstName}} {{da.Teacher.LastName}}</div>
+                            <div class="accent--text">{{da.HourFrom}} - {{da.HourTo}}</div>
                         </div>
                     </v-card-title>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn icon @click.native="show = !show">
+                            <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+                        </v-btn>
+                    </v-card-actions>
+                    <v-slide-y-transition>
+                        <v-card-text v-show="show">
+                            <div>Dodatkowe informacje:</div>
+                            <div>{{da.VirtualClassName}}</div>
+                        </v-card-text>
+                    </v-slide-y-transition>
                 </v-card>
             </v-flex>
             </div>
@@ -28,7 +44,8 @@
     data () {
       return {
         timetables: Object,
-        date: []
+        date: [],
+        show: false
       }
     },
     mounted () {
