@@ -2,7 +2,7 @@
     <v-container fluid grid-list-xs>
         <v-layout justify-center align-center row wrap v-for="(days, key, index) in timetables">
             <v-flex xs12 sm8>
-                <h6 class="primary--text text-sm-center">{{date[index]}}</h6>
+                <h6 class="primary--text text-sm-center">{{date[index] | moment}}</h6>
             </v-flex>
             <v-flex xs12 sm8 v-for="oneday in days">
                 <v-card v-for="da in oneday">
@@ -30,7 +30,6 @@
                     </v-slide-y-transition>
                 </v-card>
             </v-flex>
-            </div>
         </v-layout>
     </v-container>
 </template>
@@ -38,7 +37,7 @@
 <script>
   /* eslint-disable indent */
   import api from '../api'
-  // import _ from 'lodash'
+  import moment from 'moment'
   export default {
     name: 'timetable',
     data () {
@@ -64,6 +63,12 @@
       })
     },
     methods: {
+    },
+    filters: {
+      moment: function (date) {
+        moment.locale('pl')
+        return moment(date).format('dddd DD.MM')
+      }
     }
   }
 </script>
