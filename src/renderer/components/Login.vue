@@ -38,7 +38,7 @@
                     </v-container>
                 </v-card-text>
                 <v-card-actions>
-                    <v-btn @click.native="loginIn" flat primary to="/mainlayout">Zaloguj się</v-btn>
+                    <v-btn @click.native="loginIn" flat primary>Zaloguj się</v-btn>
                 </v-card-actions>
                 </v-form>
             </v-card>
@@ -71,6 +71,9 @@
         loginIn (login, password) {
           if (this.valid === true) {
             api.loginIn(this.login, this.password)
+            setTimeout(() => {
+              this.$router.push('/')
+            }, 3000)
           }
         }
     }

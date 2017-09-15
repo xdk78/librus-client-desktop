@@ -43,6 +43,7 @@
     name: 'mainlayout',
     data () {
       return {
+        logged: this.$store.getters.logged,
         clipped: true,
         drawer: true,
         fixed: true,
@@ -52,6 +53,14 @@
           {icon: 'grade', title: 'Oceny', to: '/grades'}
         ],
         title: 'Dziennik'
+      }
+    },
+    created () {
+      if (!this.logged) {
+        this.$router.push('/login')
+      }
+      if (this.logged) {
+        this.$router.push('/')
       }
     }
   }

@@ -3,12 +3,7 @@
         <main>
             <v-container fluid>
                 <v-slide-y-transition mode="out-in">
-                    <div v-if="!logged">
-                        <login></login>
-                    </div>
-                    <div v-if="logged">
-                        <mainlayout></mainlayout>
-                    </div>
+                    <router-view></router-view>
                 </v-slide-y-transition>
             </v-container>
         </main>
@@ -24,7 +19,6 @@
     name: 'app',
     data () {
       return {
-        logged: this.$store.getters.logged
       }
     }
   }
